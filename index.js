@@ -3,8 +3,8 @@ import { dbConnection } from "./database/db.js";
 import bodyParser from "body-parser";
 import { apiRequestLimiter } from "./middleware/apiRateLimiter.js";
 import { CONFIG } from "./config/config.js";
-
-dbConnection();
+import { Sum } from "./utils/sum.js";
+// dbConnection();
 const app = express();
 const PORT = CONFIG.PORT;
 
@@ -15,7 +15,8 @@ app.use(apiRequestLimiter);
 
 
 app.get("/",(req,res)=>{
-    res.send("Hello World");
+    const sum = Sum(10,20);
+    res.send(sum);
 });
 
 
